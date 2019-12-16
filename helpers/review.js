@@ -2,15 +2,12 @@ const db = require('../models');
 
 exports.createReview = async function(req,res,next){
     try{
-        let review = await db.Review.create({
-            user: req.body.user,
-            text: req.body.text,
-            title: req.body.title,
-            description: req.body.description,
-            image: req.body.image,
-        });
+        let review = await db.Review.create(req.body);
+        console.log(req.body);
         return res.status(200).json(review);
     } catch(err){
+        console.log(req.body);
+        console.log("createReview");
         return next(err);
     }
 }
