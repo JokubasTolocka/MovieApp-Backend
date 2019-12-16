@@ -13,6 +13,22 @@ const reviewSchema = new mongoose.Schema({
     },
     created_at:{
         default: Date.now
+    },
+    title:{
+        type: String,
+        required: true
+    },
+    description:{
+        type: String,
+        required: true,
+    },
+    releaseDate:{
+        type: Date,
+        required: true
+    },
+    image:{
+        type: String,
+        required: true
     }
 })
 
