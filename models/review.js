@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
     user:{
-        type: String,
-        required: true,
-        maxlength: 30
+        type: mongoose.Schema.Types.ObjectId,
+        //reference to user model
+        ref: 'User'
     },
     text:{
         type: String,
