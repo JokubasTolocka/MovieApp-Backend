@@ -4,10 +4,14 @@ const express = require('express'),
       PORT = 8000 || process.env.PORT,
       db = require('./models'),
       cors = require('cors'),
-      errorHandler = require('./helpers/error');
+      helmet = require('helmet'),
+      errorHandler = require('./helpers/error'),
       reviewRoutes = require('./routes/index');
-      
+
+//later on i need to set the cors only for MY page, not anybodys request
 app.use(cors());
+//
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
