@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express'),
       app = express(),
       bodyParser = require('body-parser'),
@@ -5,7 +6,9 @@ const express = require('express'),
       db = require('./models'),
       cors = require('cors'),
       helmet = require('helmet'),
+      {loginRequired, ensureCorrectUser} = require('./middleware/auth'),
       errorHandler = require('./helpers/error'),
+      authRoutes = require('./routes/auth'),
       reviewRoutes = require('./routes/index');
 
 //later on i need to set the cors only for MY page, not anybodys request
@@ -15,11 +18,14 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use('/auth', authRoutes);
 app.use('/review',
+    loginRequired,
+    ensureCorrectUser,
     reviewRoutes
-)
+);
 
-app.get('/', async function(req,res,next){
+app.get('/', loginRequired, async function(req,res,next){
     try{
         let reviews = await db.Review.find()
             .sort({createdAt: 'desc'});
