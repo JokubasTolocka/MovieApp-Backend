@@ -53,7 +53,6 @@ exports.signup = async function(req,res,next){
         //create a token
 
     } catch(err){
-        console.log("hit the catch");
         if(err.code === 11000){
             err.message = 'Sorry, that username and/or email is taken';
         }
