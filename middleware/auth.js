@@ -5,7 +5,6 @@ var jwt = require("jsonwebtoken");
 exports.loginRequired = function(req, res, next) {
     
     try {
-        console.log(req.user);
         const token = req.headers.authorization.split(" ")[1]; // Bears token
         jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
         if(decoded) {
