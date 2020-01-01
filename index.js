@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/auth', authRoutes);
-app.use('/review',
+app.use('/users/:id/reviews',
     loginRequired,
     ensureCorrectUser,
     reviewRoutes
@@ -28,7 +28,10 @@ app.use('/review',
 app.get('/', loginRequired, async function(req,res,next){
     try{
         let reviews = await db.Review.find()
-            .sort({createdAt: 'desc'});
+            .sort({createdAt: 'desc'})
+            .populate("User", {
+                username: true
+            });
             return res.status(200).json(reviews);
     } catch(err){
         return next(err);
