@@ -23,7 +23,7 @@ exports.createReview = async function(req,res,next){
 
 exports.getReview = async function(req,res,next){
     try{
-        let foundReview = await db.Review.findById(req.params.review._id);
+        let foundReview = await db.Review.findById(req.params.review_id);
         return res.status(200).json(foundReview);
     } catch(err){
         return next(err);
