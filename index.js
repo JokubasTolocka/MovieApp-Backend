@@ -20,8 +20,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/auth', authRoutes);
 app.use('/users/:id/reviews',
-    loginRequired,
-    ensureCorrectUser,
     reviewRoutes
 );
 

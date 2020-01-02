@@ -23,13 +23,6 @@ exports.loginRequired = function(req, res, next) {
         });
     }
 }
-// exports.loginRequired = function(req, res, next) {
-//   if (req.user) {
-//     next();
-//   } else {
-//     return res.status(401).json({ message: 'Unauthorized user!' });
-//   }
-// };
 
 // make sure we get the correct user - Authorization
 exports.ensureCorrectUser = function(req, res, next) {
