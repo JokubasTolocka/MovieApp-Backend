@@ -32,20 +32,17 @@ exports.getReview = async function(req,res,next){
 
 exports.deleteReview = async function (req, res, next) {
     try {
-      let foundReview = await db.Review.findById(req.params.review_id);
-      // let foundMessage = await db.Message.findByIdRemove(req.params.message_id);
-      await foundReview.remove();
-  
-      return res.status(200).json(foundReview);
+        let deletedReview = await db.Review.findByIdAndDelete(req.params.review_id);
+        return res.status(200).json(deletedReview);
     } catch (err) {
-      return next(err);
+        return next(err);
     }
 };
 
 exports.updateReview = async function(req, res, next) {
     try {
         let updatedReview = await db.Review.findByIdAndUpdate(
-        req.params.message_id,
+        req.params.review_id,
         {
             text : req.body.text,
             title: req.body.title,

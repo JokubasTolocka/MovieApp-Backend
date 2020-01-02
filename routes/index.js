@@ -7,7 +7,7 @@ const {createReview,getReview, updateReview, deleteReview} = require('../helpers
 router.route('/').post(loginRequired, ensureCorrectUser, createReview);
 
 router.route('/:review_id')
-    .get(getReview)
+    .get(loginRequired, getReview)
     .delete(loginRequired, ensureCorrectUser, deleteReview)
     .put(loginRequired, ensureCorrectUser, updateReview);
 
