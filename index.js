@@ -9,7 +9,8 @@ const express = require('express'),
       {loginRequired, ensureCorrectUser} = require('./middleware/auth'),
       errorHandler = require('./helpers/error'),
       authRoutes = require('./routes/auth'),
-      reviewRoutes = require('./routes/index');
+      reviewRoutes = require('./routes/index'),
+      userRoutes = require('./routes/user');
 
 //later on i need to set the cors only for MY page, not anybodys request
 app.use(cors());
@@ -21,6 +22,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/auth', authRoutes);
 app.use('/users/:id/reviews',
     reviewRoutes
+);
+app.use('/user/:id',
+    loginRequired,
+    userRoutes
 );
 
 app.get('/', loginRequired, async function(req,res,next){
