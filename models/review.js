@@ -17,7 +17,8 @@ const reviewSchema = new mongoose.Schema({
     },
     image:{
         type: String,
-        required: true
+        required: true,
+        default: "https://fbcd.co/images/products/10b65b21cf3d8bdeb562f76bcdc54c58_resize.jpg"
     }
 },{
     timestamps: true

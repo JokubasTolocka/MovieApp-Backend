@@ -1,7 +1,6 @@
 const db = require('../models');
 
 exports.createReview = async function(req,res,next){
-    console.log('reached');
     try {
         let review = await db.Review.create({
             image: req.body.image,
