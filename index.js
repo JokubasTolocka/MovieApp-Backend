@@ -32,7 +32,7 @@ app.get('/', loginRequired, async function(req,res,next){
     try{
         let reviews = await db.Review.find()
             .sort({createdAt: 'desc'})
-            .populate("User", {
+            .populate("user", {
                 username: true
             });
             return res.status(200).json(reviews);
