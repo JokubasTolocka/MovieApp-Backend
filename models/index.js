@@ -8,5 +8,6 @@ mongoose.connect('mongodb://localhost/movie_app', {
     keepAlive: true
 });
 
+module.exports.Comment = require('./comment');
 module.exports.User = require('./user');
 module.exports.Review = require('./review');
