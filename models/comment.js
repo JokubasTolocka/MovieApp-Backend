@@ -18,6 +18,8 @@ const commentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Review'
     }
+},{
+    timestamps: true
 })
 
 commentSchema.pre('remove', async function(next){

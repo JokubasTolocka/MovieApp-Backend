@@ -11,7 +11,7 @@ exports.createReview = async function(req,res,next){
         let foundUser = await db.User.findById(req.params.id);
         foundUser.reviews.push(review.id);
         await foundUser.save();
-        let foundReview = await db.Review.findById(review._id).populate('user', {
+        let foundReview = await db.Review.findById(review._id).populate("user", {
             username: true
         });
         return res.status(200).json(foundReview);

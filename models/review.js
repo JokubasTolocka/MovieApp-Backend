@@ -20,10 +20,10 @@ const reviewSchema = new mongoose.Schema({
         required: true,
         default: "https://fbcd.co/images/products/10b65b21cf3d8bdeb562f76bcdc54c58_resize.jpg"
     },
-    comments:{
+    comments:[{
         type: mongoose.Schema.ObjectId,
         ref: 'Comment'
-    }
+    }]
 },{
     timestamps: true
 });

@@ -32,7 +32,7 @@ app.get('/', loginRequired, async function(req,res,next){
     try{
         let reviews = await db.Review.find()
             .sort({createdAt: 'desc'})
-            .populate("user", {
+            .populate('user', {
                 username: true
             });
             return res.status(200).json(reviews);
@@ -40,6 +40,20 @@ app.get('/', loginRequired, async function(req,res,next){
         return next(err);
     }
 });
+app.get('/users/:id/reviews/:id/comments', loginRequired, async function(req,res,next){
+    console.log(req.params);
+    try{
+        let comments = await db.Comment.find({'review': req.params.id})
+            .sort({createdAt: 'desc'})
+            .populate('user',{
+                username: true
+            });
+        return res.status(200).json(comments);
+    }catch(err){
+        return next(err);
+    }
+})
+
 //if none are reached
 app.use(function(req,res,next){
     let err = new Error('Not Found');
