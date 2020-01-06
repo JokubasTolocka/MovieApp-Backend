@@ -20,9 +20,10 @@ exports.createComment = async function(req,res,next){
     }
 };
 
-exports.deleteComment = async function (req, res, next) {
+exports.deleteComment = async function (req, res, next) { 
     try {
-        let deletedComment = await db.Comment.findByIdAndDelete(req.body.comment.id);
+        let deletedComment = await db.Comment.findByIdAndDelete(req.params.comment_id);
+        let foundReview = await db.Review.updateOne({ _id: req.params.review_id}, {$pull: {comments: req.params.comment_id}});
         return res.status(200).json(deletedComment);
     } catch (err) {
         return next(err);

@@ -13,7 +13,9 @@ router.route('/:review_id')
     .put(loginRequired, ensureCorrectUser, updateReview);
 
 router.route('/:review_id/comments')
-    .post(loginRequired, createComment)
-    .delete(loginRequired, ensureCorrectUser, deleteReview)
+    .post(loginRequired, createComment);
+
+router.route('/:review_id/comments/:comment_id')
+    .delete(loginRequired, deleteComment);
 
 module.exports = router;
