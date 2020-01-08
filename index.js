@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express'),
       app = express(),
       bodyParser = require('body-parser'),
-      PORT = 8000 || process.env.PORT,
+      PORT = process.env.PORT || 8000,
       db = require('./models'),
       cors = require('cors'),
       helmet = require('helmet'),
