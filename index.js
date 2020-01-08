@@ -10,7 +10,8 @@ const express = require('express'),
       errorHandler = require('./helpers/error'),
       authRoutes = require('./routes/auth'),
       reviewRoutes = require('./routes/index'),
-      userRoutes = require('./routes/user');
+      userRoutes = require('./routes/user'),
+      path = require("path");
 
 //later on i need to set the cors only for MY page, not anybodys request
 app.use(cors());
@@ -31,6 +32,8 @@ app.use('/user/:id',
     loginRequired,
     userRoutes
 );
+
+app.use(express.static(path.join(__dirname, "client", "build")))
 
 app.get('/', loginRequired, async function(req,res,next){
     try{
@@ -66,6 +69,11 @@ app.use(function(req,res,next){
 })
 
 app.use(errorHandler);
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 
 app.listen(PORT, function(){
     console.log(`Server is starting on port ${PORT}`);
