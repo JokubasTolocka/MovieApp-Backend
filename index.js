@@ -19,6 +19,12 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use(express.static(path.join(__dirname, "../movieapp-frontend/build")));
+/*React root*/
+app.get('*', (req, res) => {
+res.sendFile(path.join(__dirname + "../movieapp-frontend/build/index.html"));
+});
+
 app.use('/auth', authRoutes);
 app.use('/users/:id/reviews',
     reviewRoutes
