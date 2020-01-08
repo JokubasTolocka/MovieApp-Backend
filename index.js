@@ -24,18 +24,18 @@ if(process.env.NODE_ENV === "production"){
     app.use(express.static("./client/build"));
 }
 
-app.use('/auth', authRoutes);
-app.use('/users/:id/reviews',
+app.use('/api/auth', authRoutes);
+app.use('/api/users/:id/reviews',
     reviewRoutes
 );
-app.use('/user/:id',
+app.use('/api/user/:id',
     loginRequired,
     userRoutes
 );
 
 app.use(express.static(path.join(__dirname, "client", "build")))
 
-app.get('/', loginRequired, async function(req,res,next){
+app.get('/api', loginRequired, async function(req,res,next){
     try{
         let reviews = await db.Review.find()
             .sort({createdAt: 'desc'})
