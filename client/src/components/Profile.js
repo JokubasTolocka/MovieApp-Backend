@@ -25,7 +25,7 @@ class Profile extends Component{
                 })
             }).catch(err => console.log(err));
         let url = '/reviews';
-        apiCall('get', `http://localhost:8000${window.location.pathname}${url}`)
+        apiCall('get', `/api${window.location.pathname}${url}`)
             .then(res => {
                 this.setState({
                     reviews: res
