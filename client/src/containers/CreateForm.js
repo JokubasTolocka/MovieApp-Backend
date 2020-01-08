@@ -17,7 +17,7 @@ class CreateForm extends Component {
     componentDidMount(){
         if(window.location.pathname.match('/users/.*/reviews/.*/edit')){
             let ReviewUrl = window.location.pathname.slice(0,64);
-            apiCall('get', `http://localhost:8000${ReviewUrl}`)
+            apiCall('get', `/api${ReviewUrl}`)
             .then((res) => {
                 this.setState({
                     image: res.image,

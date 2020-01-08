@@ -20,7 +20,7 @@ class ReviewPage extends Component{
         }
     }
     componentDidMount(){
-        apiCall('get', `http://localhost:8000${window.location.pathname}`)
+        apiCall('get', `/api${window.location.pathname}`)
             .then((res) => {
                 this.setState({
                     image: res.image,

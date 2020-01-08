@@ -17,7 +17,7 @@ class Profile extends Component{
         this.setState({infoDisplay: !this.state.infoDisplay});
     }
     componentDidMount(){
-        apiCall('get', `http://localhost:8000${window.location.pathname}`)
+        apiCall('get', `/api${window.location.pathname}`)
             .then(res => {
                 this.setState({
                     username: res.username,

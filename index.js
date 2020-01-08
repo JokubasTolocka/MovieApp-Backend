@@ -47,7 +47,7 @@ app.get('/api', loginRequired, async function(req,res,next){
         return next(err);
     }
 });
-app.get('/users/:id/reviews/:id/comments', loginRequired, async function(req,res,next){
+app.get('/api/users/:id/reviews/:id/comments', loginRequired, async function(req,res,next){
     console.log(req.params);
     try{
         let comments = await db.Comment.find({'review': req.params.id})

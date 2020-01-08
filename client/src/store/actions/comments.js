@@ -9,7 +9,7 @@ export const loadComments = comments => ({
 
 export const fetchComments = (state) => {
     return dispatch => {
-        return apiCall('get', `http://localhost:8000/users/${state.reviewUserId}/reviews/${state.reviewId}/comments`)
+        return apiCall('get', `/api/users/${state.reviewUserId}/reviews/${state.reviewId}/comments`)
             .then((res) => {
                 dispatch(loadComments(res))
             })
@@ -19,7 +19,7 @@ export const fetchComments = (state) => {
 
 export const postNewComment = state => (dispatch, getState) => {
 
-    return apiCall("post", `http://localhost:8000/users/${state.reviewUserId}/reviews/${state.reviewId}/comments`, state)
+    return apiCall("post", `/api/users/${state.reviewUserId}/reviews/${state.reviewId}/comments`, state)
       .then(res => {
       })
       .catch(err => {
@@ -33,7 +33,7 @@ export const remove = id => ({
   
 export const removeComment = (comment_id, ReviewUser_id, review_id, user_id) => {
     return dispatch => {
-        return apiCall("delete", `/users/${ReviewUser_id}/reviews/${review_id}/user/${user_id}/comments/${comment_id}`)
+        return apiCall("delete", `/api/users/${ReviewUser_id}/reviews/${review_id}/user/${user_id}/comments/${comment_id}`)
         .then(() => dispatch(remove(comment_id)))
         .catch(err => {
             dispatch(addError(err.messages))
