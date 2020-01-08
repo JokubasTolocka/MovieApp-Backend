@@ -1,6 +1,6 @@
 {
   "name": "movieapp-frontend",
-  "homepage": "https://JokubasTolocka.github.io/Movie_app",
+  "homepage": "https://moviereviewapp-app.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
