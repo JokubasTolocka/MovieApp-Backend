@@ -9,7 +9,7 @@ export const loadReviews = reviews => ({
 
 export const fetchReviews = () => {
     return dispatch => {
-        return apiCall('get', 'http://localhost:8000/')
+        return apiCall('get', '/')
             .then((res) => {
                 dispatch(loadReviews(res))
             })
@@ -20,7 +20,7 @@ export const fetchReviews = () => {
 export const postNewReview = review => (dispatch, getState) => {
     let {currentUser} = getState();
     const id = currentUser.user.id
-    return apiCall("post", `http://localhost:8000/users/${id}/reviews`, review)
+    return apiCall("post", `/users/${id}/reviews`, review)
       .then(res => {
       })
       .catch(err => {
@@ -34,7 +34,7 @@ export const remove = id => ({
 
 export const removeReview = (user_id, review_id) => {
     return dispatch => {
-        return apiCall("delete", `http://localhost:8000/users/${user_id}/reviews/${review_id}`)
+        return apiCall("delete", `/users/${user_id}/reviews/${review_id}`)
         .then(() => {
             dispatch(remove(review_id))}
             )

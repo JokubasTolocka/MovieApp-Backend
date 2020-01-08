@@ -25,7 +25,7 @@ export function logout(){
 export function authUser(type, userData){
   return dispatch => {
       return new Promise((resolve, reject) => {
-          return apiCall('post', `http://localhost:8000/auth/${type}`, userData)
+          return apiCall('post', `/auth/${type}`, userData)
               .then(({token, ...user}) => {
                   localStorage.setItem('jwtToken', token);
                   setAuthorizationToken(token)
