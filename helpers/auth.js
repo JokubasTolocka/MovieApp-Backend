@@ -41,10 +41,10 @@ exports.signup = async function(req,res,next){
         console.log(req.body);
         //create a user
         let user = await db.User.create(req.body);
-        let {_id, username} = user;
+        let {id, username} = user;
         console.log('paime');
         let token = jwt.sign({
-            _id,
+            id,
             username
         }, process.env.SECURE_KEY);
         console.log("cia");

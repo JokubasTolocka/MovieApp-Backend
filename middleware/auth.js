@@ -1,4 +1,4 @@
-require('dotenv').config();
+// require('dotenv').config();
 var jwt = require("jsonwebtoken");
 
 // make sure the user is logged - Authentication
