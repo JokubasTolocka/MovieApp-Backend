@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {fetchComments} from '../store/actions/comments';
 import { postNewComment } from "../store/actions/comments";
 
 class CommentForm extends Component{
@@ -33,6 +34,7 @@ class CommentForm extends Component{
         // e.preventDefault();
         this.props.postNewComment(this.state);
         this.setState({comment: ''});
+        this.props.fetchComments(this.state);
     }
     render(){
         return(
@@ -74,4 +76,4 @@ function mapStateToProps(state){
     };
 }
 
-export default connect(mapStateToProps, {postNewComment})(CommentForm);
+export default connect(mapStateToProps, {postNewComment, fetchComments})(CommentForm);
