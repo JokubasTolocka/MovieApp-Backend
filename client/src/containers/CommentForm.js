@@ -31,6 +31,7 @@ class CommentForm extends Component{
         this.setState({ [e.target.name]: e.target.value });
     }
     handleSubmit = e =>{
+        //handling comment submition
         e.preventDefault();
         this.props.postNewComment(this.state);
         this.setState({comment: ''});
