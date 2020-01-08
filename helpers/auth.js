@@ -15,7 +15,7 @@ exports.signin = async function(req,res,next){
                 id,
                 username
             },
-            process.env.SECRET_KEY
+            process.env.SECURE_KEY
             );
             return res.status(200).json({
                 id,
@@ -38,18 +38,13 @@ exports.signin = async function(req,res,next){
 
 exports.signup = async function(req,res,next){
     try {
-        console.log("Reach signup");
         //create a user
         let user = await db.User.create(req.body);
-        console.log("Db create user");
         let {id, username} = user;
-        console.log.apply(user);
-        console.log(process.env.SECRET_KEY);
         let token = jwt.sign({
             id,
             username
-        }, process.env.SECRET_KEY);
-        console.log('token sign');
+        }, process.env.SECURE_KEY);
         return res.status(200).json({
             id,
             username,
