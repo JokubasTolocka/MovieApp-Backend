@@ -43,6 +43,8 @@ exports.signup = async function(req,res,next){
         let user = await db.User.create(req.body);
         console.log("Db create user");
         let {id, username} = user;
+        console.log.apply(user);
+        console.log(process.env.SECRET_KEY);
         let token = jwt.sign({
             id,
             username
