@@ -33,7 +33,7 @@ class CreateForm extends Component {
     handleEdit = (e) => {
         e.preventDefault();
         let ReviewUrl = window.location.pathname.slice(0,64);
-        apiCall('put', `http://localhost:8000${ReviewUrl}`, this.state);
+        apiCall('put', `/api${ReviewUrl}`, this.state);
         this.setState({user: '', title: '', image: '', text: ''});
         this.props.history.push(ReviewUrl);
         
