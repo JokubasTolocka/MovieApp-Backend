@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    activityScore: {
+        type: Number,
+        default: 0,
+        minimum: 0
+    },
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Review'

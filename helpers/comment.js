@@ -7,6 +7,7 @@ exports.createComment = async function(req,res,next){
             user: req.body.user_id,
             review: req.body.reviewId
         });
+        let UpdatedUser = await db.User.updateOne({ _id: req.body.user_id}, {$inc: {activityScore: 1}});
         let foundReview = await db.Review.findById(req.params.review_id);
         foundReview.comments.push(comment.id);
         await foundReview.save();
@@ -22,6 +23,7 @@ exports.createComment = async function(req,res,next){
 
 exports.deleteComment = async function (req, res, next) { 
     try {
+        let UpdatedUser = await db.User.updateOne({ _id: req.params.user_id}, {$inc: {activityScore: -1}});
         let deletedComment = await db.Comment.findByIdAndDelete(req.params.comment_id);
         let foundReview = await db.Review.updateOne({ _id: req.params.review_id}, {$pull: {comments: req.params.comment_id}});
         return res.status(200).json(deletedComment);

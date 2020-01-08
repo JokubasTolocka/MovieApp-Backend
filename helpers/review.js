@@ -8,6 +8,7 @@ exports.createReview = async function(req,res,next){
             text: req.body.text,
             user: req.params.id
         });
+        let UpdatedUser = await db.User.updateOne({ _id: req.params.id}, {$inc: {activityScore: 5}});
         let foundUser = await db.User.findById(req.params.id);
         foundUser.reviews.push(review.id);
         await foundUser.save();
@@ -31,6 +32,9 @@ exports.getReview = async function(req,res,next){
 
 exports.deleteReview = async function (req, res, next) {
     try {
+        console.log(req.params);
+        let UpdatedUser = await db.User.updateOne({ _id: req.params.id}, {$inc: {activityScore: -5}});
+        console.log(UpdatedUser);
         let deletedReview = await db.Review.findByIdAndDelete(req.params.review_id);
         return res.status(200).json(deletedReview);
     } catch (err) {

@@ -15,7 +15,7 @@ router.route('/:review_id')
 router.route('/:review_id/comments')
     .post(loginRequired, createComment);
 
-router.route('/:review_id/comments/:comment_id')
+router.route('/:review_id/user/:user_id/comments/:comment_id')
     .delete(loginRequired, deleteComment);
 
 module.exports = router;
