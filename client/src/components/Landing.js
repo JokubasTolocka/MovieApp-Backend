@@ -1,5 +1,5 @@
 import React from 'react';
-import Photo from '../images/movieapplogo.png';
+import Photo from '../images/movieapplogo.webp';
 
 const Landing = () => {
     return(
@@ -10,6 +10,7 @@ const Landing = () => {
                 </div>
                 <h3 className='landing-h3'>An endless cycle.</h3>
                 <img className='landing-image' src={Photo} alt='Landing'/>
+                
             </div>
         </div>
     )
